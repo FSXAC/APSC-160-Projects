@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define DENSITY_STEEL 7850
+#define DENSITY_STEEL 7850.0
 
 int main(void) {
 	float width, length, height, volume;
