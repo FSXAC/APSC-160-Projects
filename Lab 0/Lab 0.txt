@@ -1,0 +1,16 @@
+NAME:		MUCHEN HE
+STUDENT ID:	44638154
+LAB SECTION: 	L2F
+UBC EMAIL:	m.he@alumni.ubc.ca
+INTENDED MAJOR:	ELECTRICAL ENGINEERING
+
+PIAZZA KEYWORD: FLYING CHOCOLATE
+
+PART 2 OUTPUT: 
+Please enter your name: Master
+
+Hello! And welcome, Master, to APSC 160!
+*cue John William music*
+
+Press any key to continue . . .
+

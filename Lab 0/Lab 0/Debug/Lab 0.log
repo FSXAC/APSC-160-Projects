@@ -1,0 +1,8 @@
+﻿Build started 2016-01-10 17:20:18.
+     1>Project "Q:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Lab 0\Lab 0\Lab 0.vcxproj" on node 2 (Build target(s)).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.Cpp.Platform.targets(44,5): error MSB8020: The builds tools for v140 (Platform Toolset = 'v140') cannot be found. To build using the v140 build tools, either click the Project menu or right-click the solution, and then select "Update VC++ Projects...". Install v140 to build using the v140 build tools.
+     1>Done Building Project "Q:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Lab 0\Lab 0\Lab 0.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.23
