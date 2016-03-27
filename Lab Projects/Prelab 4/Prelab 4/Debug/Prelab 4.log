@@ -1,0 +1,14 @@
+﻿Build started 2/15/2016 15:59:47.
+     1>Project "Q:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Lab Projects\Prelab 4\Prelab 4\Prelab 4.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         D:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt "prelab 4.c"
+         prelab 4.c
+     1>q:\onedrive\documents\ubc 2016\apsc 160\projects\lab projects\prelab 4\prelab 4\prelab 4.c(41): warning C4013: 'system' undefined; assuming extern returning int
+       Link:
+         D:\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"Q:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Lab Projects\Prelab 4\Debug\Prelab 4.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"Q:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Lab Projects\Prelab 4\Debug\Prelab 4.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"Q:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Lab Projects\Prelab 4\Debug\Prelab 4.lib" /MACHINE:X86 "Debug\prelab 4.obj"
+         Prelab 4.vcxproj -> Q:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Lab Projects\Prelab 4\Debug\Prelab 4.exe
+     1>Done Building Project "Q:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Lab Projects\Prelab 4\Prelab 4\Prelab 4.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.44
