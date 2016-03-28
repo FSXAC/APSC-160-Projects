@@ -15,7 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Windows Beep.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

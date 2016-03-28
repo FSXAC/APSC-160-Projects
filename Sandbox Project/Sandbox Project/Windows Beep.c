@@ -8,9 +8,12 @@
 #define PAUSE system("pause");
 
 int main(void) {
-	printf("Playing MB_OK (default beep). . .\n");
-	MessageBeep(MB_OK);
-	PAUSE;
+
+	for (int i = 0; i < 10; i++) {
+		printf("Playing MB_OK (default beep). . .\n");
+		MessageBeep(MB_OK);
+		Sleep(200);
+	}
 
 	printf("Playing MB_ICONINFORMATION (asterisk) . . .\n");
 	MessageBeep(MB_ICONINFORMATION);
