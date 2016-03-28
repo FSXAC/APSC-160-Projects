@@ -3,6 +3,8 @@
  * + pre-entered coordinates for easier tracing
  * + auto draw
  * + drawRect function for drawing rectangles
+ * #TODO Add ability to import coords from file
+ * #TODO Add DAQ tracing support
  */
 
 #include <stdio.h>

@@ -15,7 +15,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Draw Line 4.c" />
+    <ClCompile Include="Windows Beep.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3973B245-0FC2-401E-AD90-49B50A1E26F5}</ProjectGuid>
