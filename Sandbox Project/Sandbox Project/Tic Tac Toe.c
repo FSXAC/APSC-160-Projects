@@ -17,7 +17,7 @@
 #define SQUARE(x) x*x
 
 // constants
-const char VERSION[] = "version 0.21";
+const char VERSION[] = "version 0.22";
 
 // board
 const int BOARD_SIZE = 3;
@@ -34,6 +34,7 @@ void printGrid(char grid[]);
 char checkWin(char grid[], char currentPlayer);
 int isSame(char x, char y, char z);
 int countGrid(char grid[]);
+int strinput(char string[]);
 
 // main function
 int main(void) {
@@ -53,7 +54,6 @@ int main(void) {
 int game(void) {
 	char *grid;
 	char currentPlayer = O;
-	char currentWin;
 	char winner = BLANK;
 	char again;
 	int playerInput;
@@ -93,13 +93,8 @@ int game(void) {
 		printGrid(grid);
 
 		// check win
-		currentWin = checkWin(grid, currentPlayer);
-		if (currentWin == O) {
-			winner = O;
-			break;
-		}
-		else if (currentWin == X) {
-			winner = X;
+		winner = checkWin(grid, currentPlayer);
+		if (winner != BLANK){
 			break;
 		}
 
@@ -206,4 +201,24 @@ int countGrid(char grid[]) {
 		}
 	}
 	return count;
+}
+
+/* Get string input*/
+int strinput(char string[]) {
+	char character;
+	int i = 0;
+
+	// loops through each character in the line using 'getchar()' which scans a single character at a time
+	do {
+		character = getchar();
+		string[i] = character;
+		i++;
+
+		// keep looping until the end
+	} while (character != '\n');
+
+	// adds a null character at the end - every string needs this
+	string[i - 1] = '\0';
+
+	return i;
 }
