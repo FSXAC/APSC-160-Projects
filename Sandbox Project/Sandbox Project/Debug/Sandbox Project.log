@@ -1,4 +1,4 @@
-﻿Build started 2016-03-29 20:38:46.
+﻿Build started 2016-03-30 09:03:20.
      1>Project "F:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Sandbox Project\Sandbox Project\Sandbox Project.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          D:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _CRT_SECURE_NO_WARNINGS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt "Tic Tac Toe.c"
@@ -10,4 +10,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.49
+Time Elapsed 00:00:00.44

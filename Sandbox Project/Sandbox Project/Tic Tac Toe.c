@@ -17,6 +17,8 @@
 #define SQUARE(x) x*x
 
 // constants
+const char VERSION[] = "version 0.2";
+
 // board
 const int BOARD_SIZE = 3;
 
@@ -34,6 +36,11 @@ int countGrid(char grid[]);
 
 // main function
 int main(void) {
+	// intro
+	printf("Welcome to TIC TAC TOE by MANSUR HE - %s\n", VERSION);
+	PAUSE;
+	CLEAR;
+
 	// play game
 	game();
 
@@ -62,16 +69,21 @@ void game(void) {
 
 		// prompt
 		printf("%c, It's your turn\nInput: ", currentPlayer);
-		scanf("%d", &playerInput);
+		while (1) {
+			playerInput = getchar() - '0';
+			getchar();
 
-		// check if the board is occupied or not
-		while (grid[playerInput - 1] != BLANK) {
-			printf("Invalid play, try again\nInput: ", currentPlayer);
-			scanf("%d", &playerInput);
+			// check if the board is occupied or not
+			if (grid[playerInput - 1] != BLANK) {
+				printf("Invalid play, try again\nInput: ", currentPlayer);
+			}
+			else {
+				// add player marker to grid
+				grid[playerInput - 1] = currentPlayer;
+				break;
+			}
 		}
-		
-		// add player marker to grid
-		grid[playerInput - 1] = currentPlayer;
+
 		
 		// display grid
 		CLEAR;
