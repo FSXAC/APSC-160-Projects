@@ -23,7 +23,6 @@ const char VERSION[] = "version 0.22";
 const int BOARD_SIZE = 3;
 
 // characters
-
 const char X = 'X';
 const char O = 'O';
 const char BLANK = ' ';
@@ -53,10 +52,31 @@ int main(void) {
 
 int game(void) {
 	char *grid;
-	char currentPlayer = O;
+	char playerName_1[20], playerName_2[20];
+	char currentPlayer;
 	char winner = BLANK;
 	char again;
 	int playerInput;
+
+	// ask for names
+	printf("> Player 1, what is thy name?\n> My name is ");
+	strinput(playerName_1);
+	printf("> Player 2, what is thy name?\n> My name is ");
+	strinput(playerName_2);
+
+	// ask for symbol
+	while (1) {
+		printf("> %s, What symbol (X or O) are thou starting with?\n", playerName_1);
+		currentPlayer = getch();
+		if (currentPlayer == O OR currentPlayer - 32 == O) {
+			currentPlayer = O;
+			break;
+		}
+		else if (currentPlayer == X OR currentPlayer - 32 == X) {
+			currentPlayer = X;
+			break;
+		}
+	}
 
 	// set up dynamic memory 1D array for 2D grid
 	grid = malloc(SQUARE(BOARD_SIZE) * sizeof(char*));
