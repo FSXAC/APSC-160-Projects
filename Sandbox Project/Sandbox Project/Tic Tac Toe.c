@@ -17,12 +17,13 @@
 #define SQUARE(x) x*x
 
 // constants
-const char VERSION[] = "version 0.2";
+const char VERSION[] = "version 0.21";
 
 // board
 const int BOARD_SIZE = 3;
 
 // characters
+
 const char X = 'X';
 const char O = 'O';
 const char BLANK = ' ';
@@ -70,8 +71,8 @@ void game(void) {
 		// prompt
 		printf("%c, It's your turn\nInput: ", currentPlayer);
 		while (1) {
-			playerInput = getchar() - '0';
-			getchar();
+			// get user button
+			playerInput = getch() - '0';
 
 			// check if the board is occupied or not
 			if (grid[playerInput - 1] != BLANK) {

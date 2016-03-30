@@ -83,19 +83,6 @@ int main(void) {
 	autodrawShape(grid);
 	PAUSE;
 
-	// draw rectangles
-	drawRect(5, 5, 20, 20, grid);
-	displayGrid(grid);
-	PAUSE;
-
-	drawRect(32, 13, 0, 0, grid);
-	displayGrid(grid);
-	PAUSE;
-
-	drawRect(42, 20, 25, 30, grid);
-	displayGrid(grid);
-	PAUSE;
-
 	// user draw shape
 	drawShape(grid);
 
