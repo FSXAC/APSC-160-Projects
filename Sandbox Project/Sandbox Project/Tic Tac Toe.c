@@ -29,7 +29,7 @@ const char O = 'O';
 const char BLANK = ' ';
 
 // function prototypes
-void game(void);
+int game(void);
 void printGrid(char grid[]);
 char checkWin(char grid[], char currentPlayer);
 int isSame(char x, char y, char z);
@@ -43,18 +43,19 @@ int main(void) {
 	CLEAR;
 
 	// play game
-	game();
+	while (game());
 
 	// end of program
 	PAUSE;
 	return 0;
 }
 
-void game(void) {
+int game(void) {
 	char *grid;
 	char currentPlayer = O;
 	char currentWin;
 	char winner = BLANK;
+	char again;
 	int playerInput;
 
 	// set up dynamic memory 1D array for 2D grid
@@ -64,6 +65,7 @@ void game(void) {
 	}
 
 	// display grid
+	CLEAR;
 	printGrid(grid);
 
 	while (countGrid(grid)) {
@@ -121,6 +123,22 @@ void game(void) {
 
 	// free memory
 	free(grid);
+
+	// ask if want to play again
+	while (1) {
+		printf("Rematch? (Y/N)\n");
+		again = getch();
+
+		if (again == 'y' OR again - 32 == 'y') {
+			return 1;
+		}
+		else if (again == 'n' OR again - 32 == 'n') {
+			return 0;
+		}
+		else {
+			printf("Invalid input! Try again \n");
+		}
+	}
 }
 
 /* Prints the grid*/
