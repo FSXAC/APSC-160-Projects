@@ -15,7 +15,6 @@
 #define PAUSE system("pause")
 #define CLEAR system("cls");
 #define SQUARE(x) x*x
-#define SIZEOF(x) (sizeof(x) / sizeof(x[0]))
 
 // constants
 // board
