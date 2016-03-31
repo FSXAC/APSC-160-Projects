@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Tic Tac Toe.c">
+    <ClCompile Include="DAQ 7 Segment Scrolling Display.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
