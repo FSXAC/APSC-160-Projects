@@ -3,8 +3,11 @@
  * STUDENT ID: 44638154
  * SECTION: L2F
  * E-MAIL: m.he@alumni.ubc.ca
- * 
+ *
  * 7 Segment Scrolling text display - DAQ module
+ *
+ * NOTE: characters that are unabled to be displayed are
+ * substutuded by a dot
  */
 
 // imports
@@ -15,7 +18,7 @@
 #include <Windows.h>
 
 // ignore warning
-//#define _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
 
 // preprocessors
 #define NOT !
@@ -31,12 +34,12 @@
 
 // constants
 // ASCII
-const int DIGIT_START = 48;
-const int DIGIT_END = 57;
-const int ALPHA_UPPER_START = 65;
-const int ALPHA_UPPER_END = 90;
-const int ALPHA_LOWER_START = 97;
-const int ALPHA_LOWER_END = 122;
+const int DIGIT_START = '0';
+const int DIGIT_END = '9';
+const int ALPHA_UPPER_START = 'A';
+const int ALPHA_UPPER_END = 'Z';
+const int ALPHA_LOWER_START = 'a';
+const int ALPHA_LOWER_END = 'z';
 
 // DAQ
 const int DAQ_CHANNEL = 4;
@@ -46,8 +49,7 @@ const int SWITCH0 = 0;
 const int SWITCH1 = 1;
 
 // scrolling speed
-const int DELAY_SONIC = 100;
-const int DELAY_FAST = 300;
+const int DELAY_FAST = 500;
 const int DELAY_SLOW = 1000;
 
 // scrolling direction
@@ -56,11 +58,10 @@ const int RIGHT = 1;
 
 // function prototypes
 void scrollMessage(void);
-void shiftArray(int direction, char charArray[], char newCharacter);
+void shiftArray(int direction, char string[], char newCharacter);
 void displayChar(char character, int position);
 void displayString(char string[]);
-void clearScreen(void);
-void input(char stringArray[]);
+void input(char string[]);
 
 // main function
 int main(void) {
@@ -155,26 +156,26 @@ void scrollMessage(char msg[]) {
  * PARMA: newCharacter - the new character to be replacing the end one
  * RETURN: void
  */
-void shiftArray(int direction, char charArray[], char newCharacter) {
+void shiftArray(int direction, char string[], char newCharacter) {
 	int index;
 
 	if (direction == LEFT) {
 		// shift everything to the left by 1
 		for (index = 0; index < DISPLAYS - 1; index++) {
-			charArray[index] = charArray[index + 1];
+			string[index] = string[index + 1];
 		}
 
 		// add new character at the end of array
-		charArray[DISPLAYS - 1] = newCharacter;
+		string[DISPLAYS - 1] = newCharacter;
 	}
 	else {
 		// shift everything to the right by 1
-		for (index = DISPLAYS - 1; index >= 0; index--) {
-			charArray[index] = charArray[index - 1];
+		for (index = DISPLAYS - 1; index > 0; index--) {
+			string[index] = string[index - 1];
 		}
 
 		// add new character at the end of array
-		charArray[0] = newCharacter;
+		string[0] = newCharacter;
 	}
 }
 
@@ -192,7 +193,7 @@ void displayChar(char character, int position) {
 
 	static int SEG_ALPHABETS[] = {
 		// A-J
-		238, 62, 156, 122, 158, 142, 246, 110, 12, 248, 
+		238, 62, 156, 122, 158, 142, 246, 110, 12, 248,
 		// K-U
 		174, 28, 1, 42, 58, 206, 230, 10, 182, 30, 124,
 		// V-Z
@@ -228,12 +229,12 @@ void displayString(char string[]) {
 	}
 }
 
-/* Ask user for a string input - will put everything in a string array 
+/* Ask user for a string input - will put everything in a string array
  * (including spaces)
  * PARAM: stringArray - empty string array to put the characters into
  * RETURN: void
  */
-void input(char stringArray[]) {
+void input(char string[]) {
 	char character;
 	int i = 0;
 
@@ -241,12 +242,12 @@ void input(char stringArray[]) {
 	do {
 		character = getchar();
 
-		stringArray[i] = character;
+		string[i] = character;
 		i++;
 
 		// keep looping until the end
 	} while (character != '\n');
 
 	// adds a null character at the end - every string needs this
-	stringArray[i - 1] = '\0';
+	string[i - 1] = '\0';
 }
