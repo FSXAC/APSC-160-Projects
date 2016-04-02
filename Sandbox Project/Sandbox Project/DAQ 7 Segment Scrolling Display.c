@@ -56,6 +56,10 @@ const int DELAY_SLOW = 1000;
 const int LEFT = 0;
 const int RIGHT = 1;
 
+// string presets
+const char PRESET_1[] = "PRESET STRING";
+const char PRESET_2[] = "FLIGHT 77 IS DELAYED";
+
 // function prototypes
 void scrollMessage(void);
 void shiftArray(int direction, char string[], char newCharacter);
@@ -66,6 +70,11 @@ void input(char string[]);
 // main function
 int main(void) {
 	char userString[MAX_CHAR_SPACE];
+
+	// display the options for string display
+	printf("Select a string to display:\n"
+		"[1]\t\"%s\"\n[2]\t\"%s\"\nEnter: ", PRESET_1, PRESET_2);
+
 
 	// ask user for string input
 	printf("Enter a message (80 characters max.): ");
@@ -133,7 +142,12 @@ void scrollMessage(char msg[]) {
 
 			if (msgIndex < msgLength) {
 				// if there are remaining uncovered letters
-				newChar = msg[msgIndex];
+				if (direction == LEFT) {
+					newChar = msg[msgIndex];
+				}
+				else {
+					newChar = msg[msgLength - msgIndex - 1];
+				}
 			}
 			else {
 				// finish it off by filling with blanks
@@ -193,7 +207,7 @@ void displayChar(char character, int position) {
 
 	static int SEG_ALPHABETS[] = {
 		// A-J
-		238, 62, 156, 122, 158, 142, 246, 110, 12, 248,
+		238, 62, 156, 122, 158, 142, 188, 110, 12, 248,
 		// K-U
 		174, 28, 1, 42, 58, 206, 230, 10, 182, 30, 124,
 		// V-Z
