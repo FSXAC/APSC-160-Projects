@@ -15,7 +15,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DAQ 7 Segment Scrolling Display.c" />
+    <ClCompile Include="Minesweeper.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3973B245-0FC2-401E-AD90-49B50A1E26F5}</ProjectGuid>
