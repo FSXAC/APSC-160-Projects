@@ -12,7 +12,7 @@
 
 // macros
 #define PAUSE system("pause")
-#define CLEAR system("clear")
+#define CLEAR system("cls")
 #define ROLL(x) rand()%x
 
 // game constants
@@ -24,12 +24,15 @@ const char BLANK = ' ';
 const char MINE = 'X';
 const char FLAG = 'P';
 
+const int DEBUG = 0;
+
 // grid properties
 const int GRID_WIDTH = 10;
 const int GRID_HEIGHT = 10;
-const int MINES = 10;
+const int MINES = 5;
 
 // function prototypes
+void minesweeper(void);
 void placeMines(int **grid);
 void placeNumbers(int **grid);
 int checkMines(int **grid, int x, int y);
@@ -38,6 +41,22 @@ void drawLine(void);
 
 // main function
 int main(void) {
+	// reset random seed
+	srand(time(NULL));
+
+	while (1) {
+		CLEAR;
+		minesweeper();
+		PAUSE;
+	}
+
+	// end of program
+	PAUSE;
+	return 0;
+}
+
+/* Main game is located here*/
+void minesweeper(void) {
 	// grid array
 	int **grid;
 
@@ -53,9 +72,6 @@ int main(void) {
 		}
 	}
 
-	// reset random seed
-	srand(time(NULL));
-
 	// place mines
 	placeMines(grid);
 
@@ -65,16 +81,11 @@ int main(void) {
 	// display grid
 	displayGrid(grid);
 
-	// end of program
 	// free memory
 	for (int i = 0; i < GRID_HEIGHT; i++) {
 		free(grid[i]);
 	}
 	free(grid);
-
-	// end
-	PAUSE;
-	return 0;
 }
 
 /* Randomly generates the mines to put all over the place
@@ -90,15 +101,16 @@ void placeMines(int **grid) {
 		random_x = ROLL(GRID_WIDTH);
 		random_y = ROLL(GRID_HEIGHT);
 
-		printf("placeMines(): randgen(%d): X = %d\tY= %d\n",
-			i, random_x, random_y);
-
 		// if the space is not already occupied by a mine, then add
 		while (grid[random_y][random_x] == CELL_MINE) {
 			// generate more random values until it lands on a free one
 			random_x = ROLL(GRID_WIDTH);
 			random_y = ROLL(GRID_HEIGHT);
 		}
+
+		if (DEBUG)
+			printf("placeMines(): randgen(%d): X = %d\tY= %d\n",
+			i, random_x, random_y);
 
 		// add mine to grid
 		grid[random_y][random_x] = CELL_MINE;
@@ -126,8 +138,8 @@ int checkMines(int **grid, int iref, int jref) {
 	int count = 0;
 	for (int i = iref - 1; i <= iref + 1; i++) {
 		for (int j = jref - 1; j <= jref + 1; j++) {
-			if (i > 0 AND i < GRID_HEIGHT AND
-				j > 0 AND j < GRID_WIDTH AND
+			if (i >= 0 AND i < GRID_HEIGHT AND
+				j >= 0 AND j < GRID_WIDTH AND
 				grid[i][j] == CELL_MINE) {
 				count++;
 			}
@@ -143,9 +155,27 @@ int checkMines(int **grid, int iref, int jref) {
 void displayGrid(int **grid) {
 	int gridValue;
 
+	// draw horizontal reference ruler
+	printf("   ");
+	for (int i = 0; i < GRID_WIDTH; i++) {
+		printf(" %2d ", i);
+	}
+	printf("\n");
+
+	// draw horizontal ticks
+	printf("   ");
+	for (int i = 0; i < GRID_WIDTH; i++) {
+		printf("  | ");
+	}
+	printf("\n");
+
+	// draw grid
 	for (int i = 0; i < GRID_HEIGHT; i++) {
 		// draw vertical line
 		drawLine();
+
+		// draw vertical reference ruler
+		printf("%2d-", i);
 
 		// draw the cells and vertical separators
 		for (int j = 0; j < GRID_WIDTH; j++) {
@@ -178,6 +208,7 @@ void displayGrid(int **grid) {
 
 // draws the line that separates the grid horizontally
 void drawLine(void) {
+	printf("   ");
 	for (int i = 0; i < GRID_HEIGHT; i++) {
 		printf("+---");
 	}
