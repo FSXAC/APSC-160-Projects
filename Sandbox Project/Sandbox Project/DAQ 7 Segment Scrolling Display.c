@@ -106,34 +106,25 @@ void scrollMessage(char msg[]) {
 	// msg index
 	int msgIndex = 0;
 
-	// switch states
-	int switch_0;
-	int switch_1;
+	// switch controls
+	int direction;
+	int speed;
 
 	// speed
 	int delay;
 
-	// direction
-	int direction;
-
+	// continue looping until user quits program
 	while (continueSuperLoop()) {
 		// loop scrolling
 		for (msgIndex = 0; msgIndex < msgLength + DISPLAYS; msgIndex++) {
 
 			// get switch readings
-			switch_0 = digitalRead(SWITCH0);
-			switch_1 = digitalRead(SWITCH1);
+			direction = digitalRead(SWITCH0);
+			speed = digitalRead(SWITCH1);
 
-			// set direction depends on switch 0
-			if (switch_0) {
-				direction = RIGHT;
-			}
-			else {
-				direction = LEFT;
-			}
 
 			// set speed depends on switch 1
-			if (switch_1) {
+			if (speed) {
 				delay = DELAY_FAST;
 			}
 			else {
