@@ -172,7 +172,12 @@ void displayGrid(int **grid) {
 	// draw grid
 	for (int i = 0; i < GRID_HEIGHT; i++) {
 		// draw vertical line
-		drawLine();
+		if (NOT i) {
+			drawLine(1);
+		}
+		else {
+			drawLine(0);
+		}
 
 		// draw vertical reference ruler
 		printf("%2d-", i);
@@ -203,14 +208,29 @@ void displayGrid(int **grid) {
 	}
 
 	// finish the last line
-	drawLine();
+	drawLine(1);
 }
 
 // draws the line that separates the grid horizontally
-void drawLine(void) {
+void drawLine(int isBorder) {
 	printf("   ");
 	for (int i = 0; i < GRID_HEIGHT; i++) {
-		printf("+---");
+		if (isBorder) {
+			if (NOT i) {
+				printf("|===");
+			}
+			else  {
+				printf("====");
+			}
+		}
+		else {
+			if (NOT i) {
+				printf("|---");
+			}
+			else {
+				printf("+---");
+			}
+		}
 	}
-	printf("+\n");
+	printf("|\n");
 }
