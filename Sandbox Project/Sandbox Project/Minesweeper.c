@@ -31,6 +31,8 @@ const int MINES = 10;
 
 // function prototypes
 void placeMines(int **grid);
+void placeNumbers(int **grid);
+int checkMines(int **grid, int x, int y);
 void displayGrid(int **grid);
 void drawLine(void);
 
@@ -56,6 +58,9 @@ int main(void) {
 
 	// place mines
 	placeMines(grid);
+
+	// place numbers
+	placeNumbers(grid);
 
 	// display grid
 	displayGrid(grid);
@@ -98,6 +103,37 @@ void placeMines(int **grid) {
 		// add mine to grid
 		grid[random_y][random_x] = CELL_MINE;
 	}
+}
+
+/* Check each grid and its surroundings for mines
+ * Put a number on the cell spot for number of mines around it
+ */
+void placeNumbers(int **grid) {
+	for (int i = 0; i < GRID_HEIGHT; i++) {
+		for (int j = 0; j < GRID_WIDTH; j++) {
+			if (grid[i][j] != CELL_MINE) {
+				// if the cell is not a mine itself
+				grid[i][j] = checkMines(grid, i, j);
+			}
+		}
+	}
+}
+
+/* Checks a single location on the grid for number of 
+ * mines around it 
+ */
+int checkMines(int **grid, int iref, int jref) {
+	int count = 0;
+	for (int i = iref - 1; i <= iref + 1; i++) {
+		for (int j = jref - 1; j <= jref + 1; j++) {
+			if (i > 0 AND i < GRID_HEIGHT AND
+				j > 0 AND j < GRID_WIDTH AND
+				grid[i][j] == CELL_MINE) {
+				count++;
+			}
+		}
+	}
+	return count;
 }
 
 /* Displays the minesweeper grid on the screen
