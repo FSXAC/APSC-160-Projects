@@ -6,8 +6,13 @@
  *
  * 7 Segment Scrolling text display - DAQ module
  *
- * NOTE: characters that are unabled to be displayed are
+ * ----NOTE: characters that are unabled to be displayed are
  * substutuded by a dot
+ *
+ * ----NOTE: Due to the way the program is coded, when the reverse direction
+ * swtich is activated, you need to wait a few characters to scroll through
+ * before it returns to normal, then it scrolls in the reverse direction
+ * with no problem
  */
 
 // imports
@@ -33,7 +38,7 @@
 #define PAUSE system("pause")
 
 // constants
-// ASCII
+// ASCII for character recognition
 const int DIGIT_START = '0';
 const int DIGIT_END = '9';
 const int ALPHA_UPPER_START = 'A';
@@ -65,24 +70,58 @@ void scrollMessage(void);
 void shiftArray(int direction, char string[], char newCharacter);
 void displayChar(char character, int position);
 void displayString(char string[]);
+void clearDisplay(void);
 void input(char string[]);
 
 // main function
 int main(void) {
 	char userString[MAX_CHAR_SPACE];
+	int userChoice = 0;
 
+	// *** start comment here
 	// display the options for string display
-	printf("Select a string to display:\n"
-		"[1]\t\"%s\"\n[2]\t\"%s\"\nEnter: ", PRESET_1, PRESET_2);
+	printf("Select a string to display:\n\n"
+		"[1]\t\"%s\"\n[2]\t\"%s\"\n", PRESET_1, PRESET_2);
 
+	while (userChoice != 1 AND userChoice != 2 AND userChoice != 3) {
+		// ask for user input
+		printf("Enter: ");
+		userChoice = getch() - '0';
+	}
+	// *** end comment here
 
+	/*----NOTE: I expanded on the program so that it could take
+	 * ANY string entered by the user (including spaces) 
+	 * UNCOMMENT THE CODE BELOW AND COMMENT THE ABOVE CODE TO ENABLE THIS FEATURE :)
+	 */
+
+	/*
 	// ask user for string input
-	printf("Enter a message (80 characters max.): ");
+	printf("\nEnter a message (80 characters max.): ");
 	input(userString);
 
 	// start DAQ
 	if (setupDAQ(DAQ_CHANNEL)) {
 		scrollMessage(userString);
+	}
+	else {
+		printf("Error: DAQ could not be initialized successfully.\n");
+		PAUSE;
+		return 0;
+	}*/
+
+	// start DAQ
+	if (setupDAQ(DAQ_CHANNEL)) {
+
+		// display different strings based on user selection
+		if (userChoice == 1) {
+			// display preset string 1
+			scrollMessage(PRESET_1);
+		}
+		else {
+			// display preset string 2
+			scrollMessage(PRESET_2);
+		}
 	}
 	else {
 		printf("Error: DAQ could not be initialized successfully.\n");
@@ -121,7 +160,6 @@ void scrollMessage(char msg[]) {
 			// get switch readings
 			direction = digitalRead(SWITCH0);
 			speed = digitalRead(SWITCH1);
-
 
 			// set speed depends on switch 1
 			if (speed) {
@@ -231,6 +269,17 @@ void displayString(char string[]) {
 	int index;
 	for (index = DISPLAYS - 1; index >= 0; index--) {
 		displayChar(string[index], DISPLAYS - index - 1);
+	}
+}
+
+/* Clears all displays on the 7 segment display
+ * PARAM: void
+ * RETURN: void
+ */
+void clearDisplay(void) {
+	int i;
+	for (i = 0; i < DISPLAYS; i++) {
+		displayWrite(0, i);
 	}
 }
 
