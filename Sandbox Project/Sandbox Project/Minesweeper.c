@@ -24,6 +24,10 @@ const char BLANK = ' ';
 const char MINE = 'X';
 const char FLAG = 'P';
 
+const int HIDDEN = 0;
+const int SHOW = 1;
+const int SHOWFLAG = 2;
+
 const int DEBUG = 0;
 
 // grid properties
@@ -54,7 +58,6 @@ int main(void) {
 	srand(time(NULL));
 
 	while (1) {
-		CLEAR;
 		minesweeper();
 		PAUSE;
 	}
@@ -69,15 +72,22 @@ void minesweeper(void) {
 	// grid array
 	struct cell **grid;
 
+	// user input
+	int inputX;
+	int inputY;
+
 	// create the grid
 	// set up dynamic memory 2D array
 	grid = malloc(GRID_HEIGHT * sizeof(struct cell*));
 	for (int row = 0; row < GRID_HEIGHT; row++) {
 		grid[row] = malloc(GRID_WIDTH * sizeof(struct cell));
-
-		// add blank chars to each element
+				
 		for (int col = 0; col < GRID_WIDTH; col++) {
+			// add blank chars to each element
 			grid[row][col].role = CELL_BLANK;
+
+			// set reveal for each cells
+			grid[row][col].reveal = HIDDEN;
 		}
 	}
 
@@ -87,8 +97,28 @@ void minesweeper(void) {
 	// place numbers
 	placeNumbers(grid);
 
-	// display grid
-	displayGrid(grid);
+	while (1) {
+		// display grid
+		displayGrid(grid);
+
+		// ask for user input
+		do {
+			printf("Enter coords: ");
+			scanf("%d %d", &inputX, &inputY);
+		} while (inputX >= GRID_WIDTH OR inputX < 0 OR
+			inputY >= GRID_HEIGHT OR inputY < 0);
+
+		// reveal the cell if the coord is correct
+		if (grid[inputY][inputX].role != CELL_MINE) {
+			grid[inputY][inputX].reveal = SHOW;
+		}
+		else {
+			grid[inputY][inputX].reveal = SHOW;
+			printf("Game over: You hit a bomb!!\n");
+			displayGrid(grid);
+			break;
+		}
+	}
 
 	// free memory
 	for (int i = 0; i < GRID_HEIGHT; i++) {
@@ -163,6 +193,10 @@ int checkMines(struct cell **grid, int iref, int jref) {
  */
 void displayGrid(struct cell **grid) {
 	int gridValue;
+	int gridShow;
+
+	// clear screen
+	CLEAR;
 
 	// draw horizontal reference ruler
 	printf("   ");
@@ -194,23 +228,30 @@ void displayGrid(struct cell **grid) {
 		// draw the cells and vertical separators
 		for (int j = 0; j < GRID_WIDTH; j++) {
 			gridValue = grid[i][j].role;
+			gridShow = grid[i][j].reveal;
 
 			// display different types of cells
-			if (gridValue == CELL_BLANK) {
-				// blank field
-				printf("| %c ", BLANK);
+			if (gridShow == SHOW) {
+				if (gridValue == CELL_BLANK) {
+					// blank field
+					printf("| %c ", BLANK);
+				}
+				else if (gridValue == CELL_MINE) {
+					// mine
+					printf("| %c ", MINE);
+				}
+				else {
+					// numbers
+					printf("| %d ", gridValue);
+				}
 			}
-			else if (gridValue == CELL_MINE) {
-				// mine
-				printf("| %c ", MINE);
+			else if (gridShow == SHOWFLAG) {
+				// display grid
+				printf("| - $");
 			}
-			else if (gridValue == CELL_FLAG) {
-				// flag
-				printf("| %c ", FLAG);
-			}
-			else {
-				// numbers
-				printf("| %d ", gridValue);
+			else if (gridShow == HIDDEN) {
+				// hidden cell
+				printf("| - ");
 			}
 		}
 		printf("|\n");
