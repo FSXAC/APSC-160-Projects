@@ -102,11 +102,21 @@ void minesweeper(void) {
 		displayGrid(grid);
 
 		// ask for user input
-		do {
+		/*do {
 			printf("Enter coords: ");
 			scanf("%d %d", &inputX, &inputY);
 		} while (inputX >= GRID_WIDTH OR inputX < 0 OR
-			inputY >= GRID_HEIGHT OR inputY < 0);
+			inputY >= GRID_HEIGHT OR inputY < 0);*/
+
+		// alternative way of asking for input (faster for user)
+		do {
+			printf("Enter X: \n");
+			inputX = getch() - '0';
+		} while (inputX >= GRID_WIDTH OR inputX < 0);
+		do {
+			printf("Enter Y: \n");
+			inputY = getch() - '0';
+		} while (inputY >= GRID_HEIGHT OR inputY < 0);
 
 		// reveal the cell if the coord is correct
 		if (grid[inputY][inputX].role != CELL_MINE) {
