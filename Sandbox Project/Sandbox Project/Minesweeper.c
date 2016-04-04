@@ -29,7 +29,16 @@ const int DEBUG = 0;
 // grid properties
 const int GRID_WIDTH = 10;
 const int GRID_HEIGHT = 10;
-const int MINES = 5;
+const int MINES = 10;
+
+// cell structure
+struct cell {
+	// can be number or mine (0 for blank, -1 for mine)
+	int role;
+
+	// can be 0 for hidden, 1 for show, 2 for flag
+	int reveal;
+};
 
 // function prototypes
 void minesweeper(void);
@@ -58,17 +67,17 @@ int main(void) {
 /* Main game is located here*/
 void minesweeper(void) {
 	// grid array
-	int **grid;
+	struct cell **grid;
 
 	// create the grid
 	// set up dynamic memory 2D array
-	grid = malloc(GRID_HEIGHT * sizeof(int*));
+	grid = malloc(GRID_HEIGHT * sizeof(struct cell*));
 	for (int row = 0; row < GRID_HEIGHT; row++) {
-		grid[row] = malloc(GRID_WIDTH * sizeof(int));
+		grid[row] = malloc(GRID_WIDTH * sizeof(struct cell));
 
 		// add blank chars to each element
 		for (int col = 0; col < GRID_WIDTH; col++) {
-			grid[row][col] = CELL_BLANK;
+			grid[row][col].role = CELL_BLANK;
 		}
 	}
 
@@ -92,7 +101,7 @@ void minesweeper(void) {
  * PARAM: grid
  * RETURN: void
  */
-void placeMines(int **grid) {
+void placeMines(struct cell **grid) {
 	int random_x;
 	int random_y;
 
@@ -102,7 +111,7 @@ void placeMines(int **grid) {
 		random_y = ROLL(GRID_HEIGHT);
 
 		// if the space is not already occupied by a mine, then add
-		while (grid[random_y][random_x] == CELL_MINE) {
+		while (grid[random_y][random_x].role == CELL_MINE) {
 			// generate more random values until it lands on a free one
 			random_x = ROLL(GRID_WIDTH);
 			random_y = ROLL(GRID_HEIGHT);
@@ -113,19 +122,19 @@ void placeMines(int **grid) {
 			i, random_x, random_y);
 
 		// add mine to grid
-		grid[random_y][random_x] = CELL_MINE;
+		grid[random_y][random_x].role = CELL_MINE;
 	}
 }
 
 /* Check each grid and its surroundings for mines
  * Put a number on the cell spot for number of mines around it
  */
-void placeNumbers(int **grid) {
+void placeNumbers(struct cell **grid) {
 	for (int i = 0; i < GRID_HEIGHT; i++) {
 		for (int j = 0; j < GRID_WIDTH; j++) {
-			if (grid[i][j] != CELL_MINE) {
+			if (grid[i][j].role != CELL_MINE) {
 				// if the cell is not a mine itself
-				grid[i][j] = checkMines(grid, i, j);
+				grid[i][j].role = checkMines(grid, i, j);
 			}
 		}
 	}
@@ -134,13 +143,13 @@ void placeNumbers(int **grid) {
 /* Checks a single location on the grid for number of 
  * mines around it 
  */
-int checkMines(int **grid, int iref, int jref) {
+int checkMines(struct cell **grid, int iref, int jref) {
 	int count = 0;
 	for (int i = iref - 1; i <= iref + 1; i++) {
 		for (int j = jref - 1; j <= jref + 1; j++) {
 			if (i >= 0 AND i < GRID_HEIGHT AND
 				j >= 0 AND j < GRID_WIDTH AND
-				grid[i][j] == CELL_MINE) {
+				grid[i][j].role == CELL_MINE) {
 				count++;
 			}
 		}
@@ -152,7 +161,7 @@ int checkMines(int **grid, int iref, int jref) {
  * PARAM: grid - the grid
  * RETURN: void
  */
-void displayGrid(int **grid) {
+void displayGrid(struct cell **grid) {
 	int gridValue;
 
 	// draw horizontal reference ruler
@@ -184,7 +193,7 @@ void displayGrid(int **grid) {
 
 		// draw the cells and vertical separators
 		for (int j = 0; j < GRID_WIDTH; j++) {
-			gridValue = grid[i][j];
+			gridValue = grid[i][j].role;
 
 			// display different types of cells
 			if (gridValue == CELL_BLANK) {
