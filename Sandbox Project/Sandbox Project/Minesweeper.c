@@ -46,10 +46,11 @@ struct cell {
 
 // function prototypes
 void minesweeper(void);
-void placeMines(int **grid);
-void placeNumbers(int **grid);
-int checkMines(int **grid, int x, int y);
-void displayGrid(int **grid);
+void clearGrid(struct cell **grid);
+void placeMines(struct cell **grid);
+void placeNumbers(struct cell **grid);
+int checkMines(struct cell **grid, int x, int y);
+void displayGrid(struct cell **grid);
 void drawLine(void);
 
 // main function
@@ -72,24 +73,23 @@ void minesweeper(void) {
 	// grid array
 	struct cell **grid;
 
+	// loop
+	int gameover = 0;
+
 	// user input
 	int inputX;
 	int inputY;
+	int firstInput = 1;
 
 	// create the grid
 	// set up dynamic memory 2D array
 	grid = malloc(GRID_HEIGHT * sizeof(struct cell*));
 	for (int row = 0; row < GRID_HEIGHT; row++) {
 		grid[row] = malloc(GRID_WIDTH * sizeof(struct cell));
-				
-		for (int col = 0; col < GRID_WIDTH; col++) {
-			// add blank chars to each element
-			grid[row][col].role = CELL_BLANK;
-
-			// set reveal for each cells
-			grid[row][col].reveal = HIDDEN;
-		}
 	}
+
+	// reset grid
+	clearGrid(grid);
 
 	// place mines
 	placeMines(grid);
@@ -97,18 +97,11 @@ void minesweeper(void) {
 	// place numbers
 	placeNumbers(grid);
 
-	while (1) {
+	while (NOT gameover) {
 		// display grid
 		displayGrid(grid);
 
 		// ask for user input
-		/*do {
-			printf("Enter coords: ");
-			scanf("%d %d", &inputX, &inputY);
-		} while (inputX >= GRID_WIDTH OR inputX < 0 OR
-			inputY >= GRID_HEIGHT OR inputY < 0);*/
-
-		// alternative way of asking for input (faster for user)
 		do {
 			printf("Enter X: \n");
 			inputX = getch() - '0';
@@ -118,15 +111,26 @@ void minesweeper(void) {
 			inputY = getch() - '0';
 		} while (inputY >= GRID_HEIGHT OR inputY < 0);
 
-		// reveal the cell if the coord is correct
-		if (grid[inputY][inputX].role != CELL_MINE) {
-			grid[inputY][inputX].reveal = SHOW;
+		if (firstInput) {
+			// user's first input will always be a blank space
+			while (grid[inputY][inputX].role != BLANK) {
+				clearGrid(grid);
+				placeMines(grid);
+				placeNumbers(grid);
+			}
+
 		}
 		else {
-			grid[inputY][inputX].reveal = SHOW;
-			printf("Game over: You hit a bomb!!\n");
-			displayGrid(grid);
-			break;
+			// reveal the cell if the coord is correct
+			if (grid[inputY][inputX].role != CELL_MINE) {
+				grid[inputY][inputX].reveal = SHOW;
+			}
+			else {
+				grid[inputY][inputX].reveal = SHOW;
+				printf("Game over: You hit a bomb!!\n");
+				displayGrid(grid);
+				gameover = 1;
+			}
 		}
 	}
 
@@ -135,6 +139,22 @@ void minesweeper(void) {
 		free(grid[i]);
 	}
 	free(grid);
+}
+
+/* Completely clears the grid including mines and numbers
+ * PARAM: grid
+ * RETURN: void
+ */
+void clearGrid(struct cell **grid) {
+	for (int row = 0; row < GRID_HEIGHT; row++) {
+		for (int col = 0; col < GRID_WIDTH; col++) {
+			// add blank chars to each element
+			grid[row][col].role = CELL_BLANK;
+
+			// set reveal for each cells
+			grid[row][col].reveal = HIDDEN;
+		}
+	}
 }
 
 /* Randomly generates the mines to put all over the place
