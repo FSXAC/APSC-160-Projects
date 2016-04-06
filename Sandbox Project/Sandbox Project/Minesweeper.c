@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <Windows.h>
 
 // preprocessors
 #define AND &&
@@ -47,6 +48,7 @@ struct cell {
 // function prototypes
 void minesweeper(void);
 void clearGrid(struct cell **grid);
+void flipGrid(struct cell **grid);
 void placeMines(struct cell **grid);
 void placeNumbers(struct cell **grid);
 int checkMines(struct cell **grid, int x, int y);
@@ -101,36 +103,43 @@ void minesweeper(void) {
 		// display grid
 		displayGrid(grid);
 
-		// ask for user input
+		// ask for user input x
 		do {
 			printf("Enter X: \n");
 			inputX = getch() - '0';
 		} while (inputX >= GRID_WIDTH OR inputX < 0);
+		if (DEBUG) printf("user entered %d for x\n", inputX);
+
+		// ask for user input y
 		do {
 			printf("Enter Y: \n");
 			inputY = getch() - '0';
 		} while (inputY >= GRID_HEIGHT OR inputY < 0);
+		if (DEBUG) printf("user entered %d for y\n", inputY);
 
 		if (firstInput) {
 			// user's first input will always be a blank space
-			while (grid[inputY][inputX].role != BLANK) {
+			while (grid[inputY][inputX].role != CELL_BLANK) {
+				if (DEBUG) {
+					printf("inital gen not optimal; regenerating . . .\n");
+					PAUSE;
+				}				
 				clearGrid(grid);
 				placeMines(grid);
 				placeNumbers(grid);
 			}
+			firstInput = 0;
+		}
 
+		// reveal the cell if the coord is correct
+		if (grid[inputY][inputX].role != CELL_MINE) {
+			grid[inputY][inputX].reveal = SHOW;
 		}
 		else {
-			// reveal the cell if the coord is correct
-			if (grid[inputY][inputX].role != CELL_MINE) {
-				grid[inputY][inputX].reveal = SHOW;
-			}
-			else {
-				grid[inputY][inputX].reveal = SHOW;
-				printf("Game over: You hit a bomb!!\n");
-				displayGrid(grid);
-				gameover = 1;
-			}
+			grid[inputY][inputX].reveal = SHOW;
+			printf("Game over: You hit a bomb!!\n");
+			displayGrid(grid);
+			gameover = 1;
 		}
 	}
 
@@ -153,6 +162,19 @@ void clearGrid(struct cell **grid) {
 
 			// set reveal for each cells
 			grid[row][col].reveal = HIDDEN;
+		}
+	}
+}
+
+/* Completely reveals all cells in current grid
+ * PARAM: grid
+ * RETURN: void
+ */
+void flipGrid(struct cell **grid) {
+	for (int row = 0; row < GRID_HEIGHT; row++) {
+		for (int col = 0; col < GRID_WIDTH; col++) {
+			// set reveal for each cells
+			grid[row][col].reveal = SHOW;
 		}
 	}
 }
@@ -200,8 +222,8 @@ void placeNumbers(struct cell **grid) {
 	}
 }
 
-/* Checks a single location on the grid for number of 
- * mines around it 
+/* Checks a single location on the grid for number of
+ * mines around it
  */
 int checkMines(struct cell **grid, int iref, int jref) {
 	int count = 0;
