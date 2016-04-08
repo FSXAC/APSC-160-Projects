@@ -33,7 +33,7 @@ const int DEBUG = 0;
 // grid properties
 const int GRID_WIDTH = 10;
 const int GRID_HEIGHT = 10;
-const int MINES = 10;
+const int MINES = 5;
 
 // cell structure
 struct cell {
@@ -52,6 +52,7 @@ int sweepGrid(struct cell **grid, int startX, int startY);
 void placeMines(struct cell **grid);
 void placeNumbers(struct cell **grid);
 int checkMines(struct cell **grid, int x, int y);
+int checkWin(struct cell ** grid);
 void displayGrid(struct cell **grid);
 void drawLine(void);
 
@@ -142,9 +143,17 @@ void minesweeper(void) {
 
 		}
 		else {
-			grid[inputY][inputX].reveal = SHOW;
-			printf("Game over: You hit a bomb!!\n");
+			flipGrid(grid);
 			displayGrid(grid);
+			printf("Game over: You hit a bomb!!\n");
+			gameover = 1;
+		}
+
+		// check win
+		if (checkWin(grid) AND NOT gameover) {
+			flipGrid(grid);
+			displayGrid(grid);
+			printf("You win!\n");
 			gameover = 1;
 		}
 	}
@@ -212,11 +221,7 @@ int sweepGrid(struct cell **grid, int startX, int startY) {
 				if (grid[j][i].role == CELL_BLANK) {
 					grid[j][i].reveal = SHOW;
 
-					// if the grid is directly adjascent to current cell
-					/*if (i == startX OR j == startY) {
-						sweepGrid(grid, i, j);
-					}*/
-
+					// recursive
 					sweepGrid(grid, i, j);
 
 					if (DEBUG) printf("BLANK\n");
@@ -293,7 +298,7 @@ int checkMines(struct cell **grid, int iref, int jref) {
 	return count;
 }
 
-/* Check if the surrounding is shown or not*/
+/* Check if the surrounding is shown or not
 int checkShown(struct cell **grid, int x, int y) {
 	if (DEBUG) printf("checkShown(): x=%d, y=%d\n", x, y);
 
@@ -315,6 +320,19 @@ int checkShown(struct cell **grid, int x, int y) {
 	
 	// if no cell is hidden
 	printf("checkShown(): all go\n");
+	return 1;
+}
+*/
+
+/* Check if the grid is completely uncovered*/
+int checkWin(struct cell ** grid) {
+	for (int j = 0; j < GRID_HEIGHT; j++) {
+		for (int i = 0; i < GRID_WIDTH; i++) {
+			if (grid[j][i].reveal == HIDDEN AND grid[j][i].role != CELL_MINE) {
+				return 0;
+			}
+		}
+	}
 	return 1;
 }
 
