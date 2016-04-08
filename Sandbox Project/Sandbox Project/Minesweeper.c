@@ -28,7 +28,7 @@ const int HIDDEN = 0;
 const int SHOW = 1;
 const int SHOWFLAG = 2;
 
-const int DEBUG = 1;
+const int DEBUG = 0;
 
 // grid properties
 const int GRID_WIDTH = 10;
@@ -187,29 +187,42 @@ void flipGrid(struct cell **grid) {
 
 /*Sweep the adjascent blank and number grids*/
 int sweepGrid(struct cell **grid, int startX, int startY) {
-	if (DEBUG) printf("=== new recusive\n");
-	for (int i = startY - 1; i <= startY + 1; i++) {
-		for (int j = startX - 1; j <= startX + 1; j++) {
+	if (DEBUG) {
+		printf("=== new recusive\n");
+		PAUSE;
+		displayGrid(grid);
+	}
+
+	for (int j = startY - 1; j <= startY + 1; j++) {
+		for (int i = startX - 1; i <= startX + 1; i++) {
 
 			// check not touching the bounds
-			if (i >= 0 AND i < GRID_HEIGHT AND
-				j >= 0 AND i < GRID_WIDTH AND
-				(i != startY OR j != startX)) {
+			if (j >= 0 AND j < GRID_HEIGHT AND
+				i >= 0 AND i < GRID_WIDTH AND
+
+				// skip eigencell
+				(i != startY OR j != startX) AND
+			
+				// skip show values
+				(grid[j][i].reveal == HIDDEN)){
 
 				if (DEBUG) printf("sweepGrid(): i=%d, j=%d\n", i, j);
 
 				// recursive reveal
-				if (grid[i][j].role == CELL_BLANK) {
-					grid[i][j].reveal = SHOW;
+				if (grid[j][i].role == CELL_BLANK) {
+					grid[j][i].reveal = SHOW;
 
-					/*if (checkShown(grid, j, i)) {
-						sweepGrid(grid, j, i);
+					// if the grid is directly adjascent to current cell
+					/*if (i == startX OR j == startY) {
+						sweepGrid(grid, i, j);
 					}*/
+
+					sweepGrid(grid, i, j);
 
 					if (DEBUG) printf("BLANK\n");
 				}
-				else if (grid[i][j].role != CELL_MINE) {
-					grid[i][j].reveal = SHOW;
+				else if (grid[j][i].role != CELL_MINE) {
+					grid[j][i].reveal = SHOW;
 					if (DEBUG) printf("NUM\n");
 				}
 				else {
