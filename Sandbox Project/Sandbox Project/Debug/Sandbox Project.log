@@ -1,15 +1,15 @@
-﻿Build started 2016-04-08 14:25:12.
+﻿Build started 2016-04-08 14:46:21.
      1>Project "F:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Sandbox Project\Sandbox Project\Sandbox Project.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          D:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _CRT_SECURE_NO_WARNINGS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt Minesweeper.c
          Minesweeper.c
-     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\minesweeper.c(61): warning C4244: 'function' : conversion from 'time_t' to 'unsigned int', possible loss of data
-     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\minesweeper.c(109): warning C4013: 'getch' undefined; assuming extern returning int
-     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\minesweeper.c(350): warning C4087: 'drawLine' : declared with 'void' parameter list
-     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\minesweeper.c(353): warning C4087: 'drawLine' : declared with 'void' parameter list
-     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\minesweeper.c(392): warning C4087: 'drawLine' : declared with 'void' parameter list
-     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\minesweeper.c(396): warning C4027: function declared without formal parameter list
-     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\minesweeper.c(234): warning C4716: 'sweepGrid' : must return a value
+     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\minesweeper.c(62): warning C4244: 'function' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\minesweeper.c(110): warning C4013: 'getch' undefined; assuming extern returning int
+     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\minesweeper.c(368): warning C4087: 'drawLine' : declared with 'void' parameter list
+     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\minesweeper.c(371): warning C4087: 'drawLine' : declared with 'void' parameter list
+     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\minesweeper.c(410): warning C4087: 'drawLine' : declared with 'void' parameter list
+     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\minesweeper.c(414): warning C4027: function declared without formal parameter list
+     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\minesweeper.c(239): warning C4716: 'sweepGrid' : must return a value
        Link:
          D:\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Sandbox Project\Debug\Sandbox Project.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"F:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Sandbox Project\Debug\Sandbox Project.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Sandbox Project\Debug\Sandbox Project.lib" /MACHINE:X86 Debug\Minesweeper.obj
          Sandbox Project.vcxproj -> F:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Sandbox Project\Debug\Sandbox Project.exe
@@ -17,4 +17,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.82
+Time Elapsed 00:00:00.67

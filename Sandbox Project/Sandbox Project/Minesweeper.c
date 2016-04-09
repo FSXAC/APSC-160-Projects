@@ -140,6 +140,10 @@ void minesweeper(void) {
 			if (grid[inputY][inputX].role == CELL_BLANK) {
 				sweepGrid(grid, inputX, inputY);
 			}
+			else {
+				// if numbered cell - check condition and auto complete
+
+			}
 
 		}
 		else {
@@ -298,31 +302,13 @@ int checkMines(struct cell **grid, int iref, int jref) {
 	return count;
 }
 
-/* Check if the surrounding is shown or not
-int checkShown(struct cell **grid, int x, int y) {
-	if (DEBUG) printf("checkShown(): x=%d, y=%d\n", x, y);
+/* Check if the surrounding is shown or not*/
+int checkNum(struct cell **grid, int x, int y) {
+	int cellNum = grid[y][x].role;
 
-	for (int i = y - 1; i <= y + 1; i++) {
-		for (int j = x - 1; j <= x + 1; j++) {
-
-			// check not touching the bounds
-			if (i >= 0 AND i < GRID_HEIGHT AND
-				j >= 0 AND i < GRID_WIDTH) {
-
-				// check
-				if (grid[i][j].reveal == HIDDEN) {
-					printf("checkShown(): hidden cells found\n");
-					return 0;
-				}
-			}
-		}
-	}
-	
-	// if no cell is hidden
-	printf("checkShown(): all go\n");
-	return 1;
+	// check surrounding flag
 }
-*/
+
 
 /* Check if the grid is completely uncovered*/
 int checkWin(struct cell ** grid) {
