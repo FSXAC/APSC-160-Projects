@@ -33,7 +33,7 @@ const int DEBUG = 0;
 // grid properties
 const int GRID_WIDTH = 10;
 const int GRID_HEIGHT = 10;
-const int MINES = 5;
+const int MINES = 10;
 
 // cell structure
 struct cell {
