@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DAQ draw.c">
+    <ClCompile Include="Minesweeper.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

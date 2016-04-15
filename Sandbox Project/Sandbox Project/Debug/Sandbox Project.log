@@ -1,20 +1,23 @@
-﻿Build started 2016-04-11 15:36:22.
+﻿Build started 2016-04-15 14:05:01.
      1>Project "F:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Sandbox Project\Sandbox Project\Sandbox Project.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         D:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _CRT_SECURE_NO_WARNINGS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt "DAQ draw.c"
-         DAQ draw.c
-     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\daq draw.c(121): warning C4020: 'toAngle' : too many actual parameters
-     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\daq draw.c(122): warning C4020: 'toAngle' : too many actual parameters
-     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\daq draw.c(183): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
-     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\daq draw.c(184): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
-     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\daq draw.c(187): warning C4013: 'inRange' undefined; assuming extern returning int
-     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\daq draw.c(209): warning C4029: declared formal parameter list different from definition
-     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\daq draw.c(203): warning C4716: 'runArm' : must return a value
+         D:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _CRT_SECURE_NO_WARNINGS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt Minesweeper.c
+         Minesweeper.c
+     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\minesweeper.c(62): warning C4244: 'function' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\minesweeper.c(113): warning C4013: 'getch' undefined; assuming extern returning int
+     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\minesweeper.c(137): warning C4244: '=' : conversion from 'time_t' to 'int', possible loss of data
+     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\minesweeper.c(168): warning C4244: '=' : conversion from 'time_t' to 'int', possible loss of data
+     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\minesweeper.c(369): warning C4087: 'drawLine' : declared with 'void' parameter list
+     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\minesweeper.c(372): warning C4087: 'drawLine' : declared with 'void' parameter list
+     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\minesweeper.c(411): warning C4087: 'drawLine' : declared with 'void' parameter list
+     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\minesweeper.c(415): warning C4027: function declared without formal parameter list
+     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\minesweeper.c(258): warning C4716: 'sweepGrid' : must return a value
+     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\minesweeper.c(325): warning C4716: 'checkNum' : must return a value
        Link:
-         D:\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Sandbox Project\Debug\Sandbox Project.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"F:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Sandbox Project\Debug\Sandbox Project.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Sandbox Project\Debug\Sandbox Project.lib" /MACHINE:X86 "Debug\DAQ draw.obj"
+         D:\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Sandbox Project\Debug\Sandbox Project.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"F:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Sandbox Project\Debug\Sandbox Project.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Sandbox Project\Debug\Sandbox Project.lib" /MACHINE:X86 Debug\Minesweeper.obj
          Sandbox Project.vcxproj -> F:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Sandbox Project\Debug\Sandbox Project.exe
      1>Done Building Project "F:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Sandbox Project\Sandbox Project\Sandbox Project.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.56
+Time Elapsed 00:00:01.00

@@ -1,0 +1,40 @@
+daily_consumption:	in litres
+roof_catchment:		0 for no roof
+			1 for half roof
+			2 for full roof
+additional:		0 for no
+			1 for yes
+additional_area:	in metres squared
+additional_x:		in metres
+additional_y:		in metres
+catchment:		0 for no
+			1 for yes
+catchment_tank:		in litres
+storage_tank:		in metres cubed
+storage_x:		in metres
+storage_y:		in metres
+storage_tower:		0 for no
+			1 for yes
+storage_tower_height:	in metres
+pump:			0 for none
+			1 for pump A
+			2 for pump B
+			3 for pump C
+filter:			0 for up
+			1 for down
+filter_1_micron:	0 for no
+			1 for yes
+filter_5_micron:	0 for no
+			1 for yes
+filter_200_micron:	0 for no
+			1 for yes
+uv:			0 for 36W
+			1 for 50W
+powergen:		0 for solar
+			1 for diesel
+solar_panel:		0 for HES-260
+			1 for SW-80
+			2 for HES-305P
+solar_panels:		in qty.
+inverter:		1 for yes
+batteries:		in qty.

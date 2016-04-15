@@ -33,7 +33,7 @@ const int DEBUG = 0;
 // grid properties
 const int GRID_WIDTH = 10;
 const int GRID_HEIGHT = 10;
-const int MINES = 10;
+const int MINES = 5;
 
 // cell structure
 struct cell {
@@ -84,6 +84,9 @@ void minesweeper(void) {
 	int inputY;
 	int firstInput = 1;
 
+	// time
+	int startTime, endTime;
+
 	// create the grid
 	// set up dynamic memory 2D array
 	grid = malloc(GRID_HEIGHT * sizeof(struct cell*));
@@ -129,6 +132,12 @@ void minesweeper(void) {
 				placeMines(grid);
 				placeNumbers(grid);
 			}
+
+			// record time
+			startTime = time(NULL);
+			if (DEBUG) printf("start time: %ds", startTime);
+
+			// flag off
 			firstInput = 0;
 		}
 
@@ -155,9 +164,15 @@ void minesweeper(void) {
 
 		// check win
 		if (checkWin(grid) AND NOT gameover) {
+			// win time
+			endTime = time(NULL);
+
 			flipGrid(grid);
 			displayGrid(grid);
 			printf("You win!\n");
+
+			printf("It took you %d seconds to win!\n", endTime - startTime);
+
 			gameover = 1;
 		}
 	}
