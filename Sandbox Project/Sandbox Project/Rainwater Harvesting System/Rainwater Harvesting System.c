@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include "constants.h"
 
 // preprocessors
 #define PAUSE system("pause")
@@ -23,7 +24,14 @@ const char SPEC_FDIR[] = "Rainwater Harvesting System\\specifications.cfg";
 // debug
 const int DEBUG = 1;
 
+// global specifications table
+int specifications[SPEC_FILE_LEGNTH];
+
+// global satisfaction table
+int satisfaction[6];
+
 // function prototypes
+void calculateSatisfaction(int table[], int consumption, double relative_cost, int environmental, int maintenance, int on_demand_Q, int reliability);
 
 // main function
 int main(void) {
@@ -33,9 +41,7 @@ int main(void) {
 	int parameter_value;
 	int read_index = 0;
 
-	// specifications
-	int specifications[SPEC_FILE_LEGNTH];
-
+	// Read specifications from file
 	// check that the file is opened correctly
 	if (spec_file == NULL) {
 		printf("specifications file failed to open\n");
