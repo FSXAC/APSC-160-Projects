@@ -57,3 +57,4 @@ const int COST_INVERTER = 2369;
 const int COST_GENERATOR = 3500;
 const int COST_GENERATOR_FUEL = 50;
 const int COST_WATER_IMPORT = 75;
+ 
