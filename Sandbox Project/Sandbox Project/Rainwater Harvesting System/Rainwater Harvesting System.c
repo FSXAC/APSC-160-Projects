@@ -29,7 +29,7 @@ int specifications[SPEC_FILE_LEGNTH];
 double satisfaction[SATIS_ATTRIBUTES];
 
 // function prototypes
-void getSatisfaction(double s_table[], int consumption, double relative_cost, int environmental, int maintenance, int on_demand_Q, int reliability);
+void getSatisfaction(double s_table[], double consumption, double relative_cost, double environmental, double maintenance, double on_demand_Q, double reliability);
 void getOverallSatisfaction(double s_table[]);
 
 // main function
@@ -63,12 +63,14 @@ int main(void) {
 		fclose(spec_file);
 	}
 
+	getSatisfaction(satisfaction, 580, 59, 1, 16.8, 29, 356.2);
+
 	PAUSE;
 	return 1;
 }
 
 /* Calculate all six aspects of satisfaction*/
-void getSatisfaction(double s_table[], int consumption, double relative_cost, int environmental, int maintenance, int on_demand_Q, int reliability) {
+void getSatisfaction(double s_table[], double consumption, double relative_cost, double environmental, double maintenance, double on_demand_Q, double reliability) {
 	// calculates based on a formula
 	double
 		satis_consumption,
@@ -86,7 +88,7 @@ void getSatisfaction(double s_table[], int consumption, double relative_cost, in
 		s_table[S_CONSUMP] = 1;
 	}
 	else {
-		s_table[S_CONSUMP] = 0.5*(1 - cos((consumption - SATISFACTION_MIN[S_CONSUMP]) / (SATISFACTION_MAX[S_CONSUMP] - SATISFACTION_MIN[S_CONSUMP]) * PI));
+		s_table[S_CONSUMP] = 0.5 * (1 - cos((consumption - SATISFACTION_MIN[S_CONSUMP]) / (SATISFACTION_MAX[S_CONSUMP] - SATISFACTION_MIN[S_CONSUMP]) * PI));
 	}
 	if (DEBUG) printf("getSatisfaction(): COM: %.4f\n\%", s_table[S_CONSUMP] * 100);
 
@@ -138,7 +140,7 @@ void getSatisfaction(double s_table[], int consumption, double relative_cost, in
 		s_table[S_RELIAB] = 1;
 	}
 	else {
-		s_table[S_RELIAB] = 0.5 * (1 - cos((reliability - SATISFACTION_MIN[S_RELIAB]) / (SATISFACTION_MAX[S_RELIAB] - SATISFACTION_MIN[S_RELIAB]) * PI));
+		s_table[S_RELIAB] = 0.5 * (1.0 - cos((reliability - SATISFACTION_MIN[S_RELIAB]) / (SATISFACTION_MAX[S_RELIAB] - SATISFACTION_MIN[S_RELIAB]) * PI));
 	}
 	if (DEBUG) printf("getSatisfaction(): REL: %.4f\n\%", s_table[S_RELIAB] * 100);
 }

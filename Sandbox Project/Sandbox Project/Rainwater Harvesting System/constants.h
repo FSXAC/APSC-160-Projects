@@ -4,7 +4,7 @@
 #include <math.h>
 
 // math
-#define PI cos(-1)
+#define PI acos(-1.0)
 
 // global satisfaction index position reference
 const int
@@ -16,7 +16,7 @@ S_ODF = 4,
 S_RELIAB = 5;
 
 // global satisfaction obejectives / requirements
-const int SATISFACTION_MIN[] = {
+const double SATISFACTION_MIN[] = {
 	150,
 	30,
 	0,
@@ -25,7 +25,7 @@ const int SATISFACTION_MIN[] = {
 	250
 };
 
-const int SATISFACTION_MAX[] = {
+const double SATISFACTION_MAX[] = {
 	625,
 	170,
 	1,
