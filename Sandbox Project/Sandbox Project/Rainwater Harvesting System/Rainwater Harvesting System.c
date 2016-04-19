@@ -1,10 +1,7 @@
 // this is a almost complete simulation of APSC 101 module 7 project
 // this do not have automatic optimization finding (for now, user inputs parameters)
 
-// imports
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
+// import custom header lib
 #include "constants.h"
 
 // preprocessors
@@ -13,6 +10,7 @@
 #define SPEC_FILE_LEGNTH 24
 
 // constants
+#define SATIS_ATTRIBUTES 6
 
 // convenient constants
 const char READ[] = "r";
@@ -28,10 +26,11 @@ const int DEBUG = 1;
 int specifications[SPEC_FILE_LEGNTH];
 
 // global satisfaction table
-int satisfaction[6];
+double satisfaction[SATIS_ATTRIBUTES];
 
 // function prototypes
-void calculateSatisfaction(int table[], int consumption, double relative_cost, int environmental, int maintenance, int on_demand_Q, int reliability);
+void getSatisfaction(double s_table[], int consumption, double relative_cost, int environmental, int maintenance, int on_demand_Q, int reliability);
+void getOverallSatisfaction(double s_table[]);
 
 // main function
 int main(void) {
@@ -66,4 +65,80 @@ int main(void) {
 
 	PAUSE;
 	return 1;
+}
+
+/* Calculate all six aspects of satisfaction*/
+void getSatisfaction(double s_table[], int consumption, double relative_cost, int environmental, int maintenance, int on_demand_Q, int reliability) {
+	// calculates based on a formula
+	double
+		satis_consumption,
+		satis_cost,
+		satis_environment,
+		satis_maintenance,
+		satis_ODF,
+		satis_reliability;
+
+	// consumption
+	if (consumption < SATISFACTION_MIN[S_CONSUMP]) {
+		s_table[S_CONSUMP] = 0;
+	}
+	else if (consumption > SATISFACTION_MAX[S_CONSUMP]) {
+		s_table[S_CONSUMP] = 1;
+	}
+	else {
+		s_table[S_CONSUMP] = 0.5*(1 - cos((consumption - SATISFACTION_MIN[S_CONSUMP]) / (SATISFACTION_MAX[S_CONSUMP] - SATISFACTION_MIN[S_CONSUMP]) * PI));
+	}
+	if (DEBUG) printf("getSatisfaction(): COM: %.4f\n\%", s_table[S_CONSUMP] * 100);
+
+	// relative cost
+	if (relative_cost < SATISFACTION_MIN[S_COST]) {
+		s_table[S_COST] = 0;
+	}
+	else if (relative_cost > SATISFACTION_MAX[S_COST]) {
+		s_table[S_COST] = 1;
+	}
+	else {
+		s_table[S_COST] = 0.5 * (1 + cos((relative_cost - SATISFACTION_MIN[S_COST]) / (SATISFACTION_MAX[S_COST] - SATISFACTION_MIN[S_COST]) * PI));
+	}
+	if (DEBUG) printf("getSatisfaction(): CST: %.4f\n\%", s_table[S_COST] * 100);
+
+	// environmental impact
+	s_table[S_ENV] = environmental;
+	if (DEBUG) printf("getSatisfaction(): ENV: %.4f\n\%", s_table[S_ENV] * 100);
+
+	// maintenance
+	if (maintenance < SATISFACTION_MIN[S_MAINTEN]) {
+		s_table[S_MAINTEN] = 0;
+	}
+	else if (maintenance > SATISFACTION_MAX[S_MAINTEN]) {
+		s_table[S_MAINTEN] = 1;
+	}
+	else {
+		s_table[S_MAINTEN] = 0.5 * (1 + cos((maintenance - SATISFACTION_MIN[S_MAINTEN]) / (SATISFACTION_MAX[S_MAINTEN] - SATISFACTION_MIN[S_MAINTEN]) * PI));
+	}
+	if (DEBUG) printf("getSatisfaction(): MNT: %.4f\n\%", s_table[S_MAINTEN] * 100);
+
+	// on demand flowrate
+	if (on_demand_Q < SATISFACTION_MIN[S_ODF]) {
+		s_table[S_ODF] = 0;
+	}
+	else if (on_demand_Q > SATISFACTION_MAX[S_ODF]) {
+		s_table[S_ODF] = 1;
+	}
+	else {
+		s_table[S_ODF] = 0.5 * (1 - cos((on_demand_Q - SATISFACTION_MIN[S_ODF]) / (SATISFACTION_MAX[S_ODF] - SATISFACTION_MIN[S_ODF]) * PI));
+	}
+	if (DEBUG) printf("getSatisfaction(): ODF: %.4f\n\%", s_table[S_ODF] * 100);
+
+	// reliability
+	if (reliability < SATISFACTION_MIN[S_RELIAB]) {
+		s_table[S_RELIAB] = 0;
+	}
+	else if (reliability > SATISFACTION_MAX[S_RELIAB]) {
+		s_table[S_RELIAB] = 1;
+	}
+	else {
+		s_table[S_RELIAB] = 0.5 * (1 - cos((reliability - SATISFACTION_MIN[S_RELIAB]) / (SATISFACTION_MAX[S_RELIAB] - SATISFACTION_MIN[S_RELIAB]) * PI));
+	}
+	if (DEBUG) printf("getSatisfaction(): REL: %.4f\n\%", s_table[S_RELIAB] * 100);
 }

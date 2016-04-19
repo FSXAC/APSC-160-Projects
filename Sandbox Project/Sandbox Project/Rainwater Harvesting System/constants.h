@@ -1,3 +1,49 @@
+// necessary imports
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+// math
+#define PI cos(-1)
+
+// global satisfaction index position reference
+const int
+S_CONSUMP = 0,
+S_COST = 1,
+S_ENV = 2,
+S_MAINTEN = 3,
+S_ODF = 4,
+S_RELIAB = 5;
+
+// global satisfaction obejectives / requirements
+const int SATISFACTION_MIN[] = {
+	150,
+	30,
+	0,
+	8,
+	15,
+	250
+};
+
+const int SATISFACTION_MAX[] = {
+	625,
+	170,
+	1,
+	95,
+	30,
+	360
+};
+
+// satisfaction weightings
+const double SATISFACTION_WEIGHT[] = {
+	0.2,
+	0.25,
+	0.1,
+	0.15,
+	0.15,
+	0.15
+};
+
 // global specification value positions
 const int SPEC_COMSUMPTION = 0;
 const int SPEC_ROOF = 1;
@@ -57,4 +103,3 @@ const int COST_INVERTER = 2369;
 const int COST_GENERATOR = 3500;
 const int COST_GENERATOR_FUEL = 50;
 const int COST_WATER_IMPORT = 75;
- 
