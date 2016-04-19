@@ -26,11 +26,11 @@ const int DEBUG = 1;
 int specifications[SPEC_FILE_LEGNTH];
 
 // global satisfaction table
-double satisfaction[SATIS_ATTRIBUTES];
+double satisfactions[SATIS_ATTRIBUTES];
 
 // function prototypes
 void getSatisfaction(double s_table[], double consumption, double relative_cost, double environmental, double maintenance, double on_demand_Q, double reliability);
-void getOverallSatisfaction(double s_table[]);
+double getOverallSatisfaction(double s_table[]);
 
 // main function
 int main(void) {
@@ -63,7 +63,8 @@ int main(void) {
 		fclose(spec_file);
 	}
 
-	getSatisfaction(satisfaction, 580, 59, 1, 16.8, 29, 356.2);
+	getSatisfaction(satisfactions, 580, 59.22, 1, 16.8, 29, 356.2);
+	getOverallSatisfaction(satisfactions);
 
 	PAUSE;
 	return 1;
@@ -90,7 +91,7 @@ void getSatisfaction(double s_table[], double consumption, double relative_cost,
 	else {
 		s_table[S_CONSUMP] = 0.5 * (1 - cos((consumption - SATISFACTION_MIN[S_CONSUMP]) / (SATISFACTION_MAX[S_CONSUMP] - SATISFACTION_MIN[S_CONSUMP]) * PI));
 	}
-	if (DEBUG) printf("getSatisfaction(): COM: %.4f\n\%", s_table[S_CONSUMP] * 100);
+	if (DEBUG) printf("getSatisfaction(): COM: %.4f%%\n", s_table[S_CONSUMP] * 100);
 
 	// relative cost
 	if (relative_cost < SATISFACTION_MIN[S_COST]) {
@@ -102,11 +103,11 @@ void getSatisfaction(double s_table[], double consumption, double relative_cost,
 	else {
 		s_table[S_COST] = 0.5 * (1 + cos((relative_cost - SATISFACTION_MIN[S_COST]) / (SATISFACTION_MAX[S_COST] - SATISFACTION_MIN[S_COST]) * PI));
 	}
-	if (DEBUG) printf("getSatisfaction(): CST: %.4f\n\%", s_table[S_COST] * 100);
+	if (DEBUG) printf("getSatisfaction(): CST: %.4f%%\n", s_table[S_COST] * 100);
 
 	// environmental impact
 	s_table[S_ENV] = environmental;
-	if (DEBUG) printf("getSatisfaction(): ENV: %.4f\n\%", s_table[S_ENV] * 100);
+	if (DEBUG) printf("getSatisfaction(): ENV: %.4f%%\n", s_table[S_ENV] * 100);
 
 	// maintenance
 	if (maintenance < SATISFACTION_MIN[S_MAINTEN]) {
@@ -118,7 +119,7 @@ void getSatisfaction(double s_table[], double consumption, double relative_cost,
 	else {
 		s_table[S_MAINTEN] = 0.5 * (1 + cos((maintenance - SATISFACTION_MIN[S_MAINTEN]) / (SATISFACTION_MAX[S_MAINTEN] - SATISFACTION_MIN[S_MAINTEN]) * PI));
 	}
-	if (DEBUG) printf("getSatisfaction(): MNT: %.4f\n\%", s_table[S_MAINTEN] * 100);
+	if (DEBUG) printf("getSatisfaction(): MNT: %.4f%%\n", s_table[S_MAINTEN] * 100);
 
 	// on demand flowrate
 	if (on_demand_Q < SATISFACTION_MIN[S_ODF]) {
@@ -130,7 +131,7 @@ void getSatisfaction(double s_table[], double consumption, double relative_cost,
 	else {
 		s_table[S_ODF] = 0.5 * (1 - cos((on_demand_Q - SATISFACTION_MIN[S_ODF]) / (SATISFACTION_MAX[S_ODF] - SATISFACTION_MIN[S_ODF]) * PI));
 	}
-	if (DEBUG) printf("getSatisfaction(): ODF: %.4f\n\%", s_table[S_ODF] * 100);
+	if (DEBUG) printf("getSatisfaction(): ODF: %.4f%%\n", s_table[S_ODF] * 100);
 
 	// reliability
 	if (reliability < SATISFACTION_MIN[S_RELIAB]) {
@@ -142,5 +143,17 @@ void getSatisfaction(double s_table[], double consumption, double relative_cost,
 	else {
 		s_table[S_RELIAB] = 0.5 * (1.0 - cos((reliability - SATISFACTION_MIN[S_RELIAB]) / (SATISFACTION_MAX[S_RELIAB] - SATISFACTION_MIN[S_RELIAB]) * PI));
 	}
-	if (DEBUG) printf("getSatisfaction(): REL: %.4f\n\%", s_table[S_RELIAB] * 100);
+	if (DEBUG) printf("getSatisfaction(): REL: %.4f%%\n", s_table[S_RELIAB] * 100);
+}
+
+/* Calculates a weighted overall satisfaction score */
+double getOverallSatisfaction(double s_table[]) {
+	double o_satisfaction = 0;
+
+	for (int i = 0; i < SATIS_ATTRIBUTES; i++) {
+		o_satisfaction += SATISFACTION_WEIGHT[i] * s_table[i];
+		if (DEBUG) printf("getOverallSatisfaction(): pass %d, S=%.4f%%\n", i, o_satisfaction * 100);
+	}
+	
+	return o_satisfaction;
 }
