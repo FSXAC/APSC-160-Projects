@@ -1,19 +1,13 @@
-﻿Build started 2016-04-18 22:32:09.
+﻿Build started 2016-04-20 14:52:50.
      1>Project "F:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Sandbox Project\Sandbox Project\Sandbox Project.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         D:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _CRT_SECURE_NO_WARNINGS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt "Rainwater Harvesting System\Rainwater Harvesting System.c"
-         Rainwater Harvesting System.c
-     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\rainwater harvesting system\rainwater harvesting system.c(80): warning C4101: 'satis_maintenance' : unreferenced local variable
-     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\rainwater harvesting system\rainwater harvesting system.c(78): warning C4101: 'satis_cost' : unreferenced local variable
-     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\rainwater harvesting system\rainwater harvesting system.c(82): warning C4101: 'satis_reliability' : unreferenced local variable
-     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\rainwater harvesting system\rainwater harvesting system.c(81): warning C4101: 'satis_ODF' : unreferenced local variable
-     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\rainwater harvesting system\rainwater harvesting system.c(79): warning C4101: 'satis_environment' : unreferenced local variable
-     1>f:\onedrive\documents\ubc 2016\apsc 160\projects\sandbox project\sandbox project\rainwater harvesting system\rainwater harvesting system.c(77): warning C4101: 'satis_consumption' : unreferenced local variable
+         D:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _CRT_SECURE_NO_WARNINGS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt "2D Array Experiments.c"
+         2D Array Experiments.c
        Link:
-         D:\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Sandbox Project\Debug\Sandbox Project.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"F:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Sandbox Project\Debug\Sandbox Project.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Sandbox Project\Debug\Sandbox Project.lib" /MACHINE:X86 "Debug\Rainwater Harvesting System.obj"
+         D:\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Sandbox Project\Debug\Sandbox Project.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"F:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Sandbox Project\Debug\Sandbox Project.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Sandbox Project\Debug\Sandbox Project.lib" /MACHINE:X86 "Debug\2D Array Experiments.obj"
          Sandbox Project.vcxproj -> F:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Sandbox Project\Debug\Sandbox Project.exe
      1>Done Building Project "F:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Sandbox Project\Sandbox Project\Sandbox Project.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.41
+Time Elapsed 00:00:01.61

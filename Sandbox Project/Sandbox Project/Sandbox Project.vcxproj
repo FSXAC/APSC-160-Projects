@@ -14,12 +14,6 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Rainwater Harvesting System\Rainwater Harvesting System.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Rainwater Harvesting System\constants.h" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3973B245-0FC2-401E-AD90-49B50A1E26F5}</ProjectGuid>
     <RootNamespace>SandboxProject</RootNamespace>

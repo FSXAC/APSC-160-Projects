@@ -63,7 +63,7 @@ int main(void) {
 		fclose(spec_file);
 	}
 
-	getSatisfaction(satisfactions, 580, 59.22, 1, 16.8, 29, 356.2);
+	getSatisfaction(satisfactions, specifications[SPEC_COMSUMPTION], 59.22, 1, 16.8, 29, 356.2);
 	getOverallSatisfaction(satisfactions);
 
 	PAUSE;
