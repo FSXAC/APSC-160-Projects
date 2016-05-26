@@ -31,9 +31,9 @@ const int SHOWFLAG = 2;
 const int DEBUG = 0;
 
 // grid properties
-const int GRID_WIDTH = 10;
-const int GRID_HEIGHT = 10;
-const int MINES = 5;
+const int GRID_WIDTH = 20;
+const int GRID_HEIGHT = 20;
+const int MINES = 10;
 
 // cell structure
 struct cell {
@@ -83,6 +83,7 @@ void minesweeper(void) {
 	int inputX;
 	int inputY;
 	int firstInput = 1;
+	int generateCounter = 0;
 
 	// time
 	int startTime, endTime;
@@ -131,6 +132,13 @@ void minesweeper(void) {
 				clearGrid(grid);
 				placeMines(grid);
 				placeNumbers(grid);
+				generateCounter++;
+
+				// break if board can't be generated
+				if (generateCounter > 100) {
+					printf("Board cannot be generated (generator time out), please change config\n");
+					return 1;
+				}
 			}
 
 			// record time
@@ -153,7 +161,6 @@ void minesweeper(void) {
 				// if numbered cell - check condition and auto complete
 
 			}
-
 		}
 		else {
 			flipGrid(grid);

@@ -1,13 +1,24 @@
-﻿Build started 2016-04-20 14:52:50.
-     1>Project "F:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Sandbox Project\Sandbox Project\Sandbox Project.vcxproj" on node 2 (Build target(s)).
+﻿Build started 2016-05-10 15:57:57.
+     1>Project "F:\OneDrive\Documents\2016 UBC\APSC 160\Projects\Sandbox Project\Sandbox Project\Sandbox Project.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         D:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _CRT_SECURE_NO_WARNINGS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt "2D Array Experiments.c"
-         2D Array Experiments.c
+         D:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _CRT_SECURE_NO_WARNINGS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt Minesweeper.c
+         Minesweeper.c
+     1>f:\onedrive\documents\2016 ubc\apsc 160\projects\sandbox project\sandbox project\minesweeper.c(62): warning C4244: 'function' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>f:\onedrive\documents\2016 ubc\apsc 160\projects\sandbox project\sandbox project\minesweeper.c(114): warning C4013: 'getch' undefined; assuming extern returning int
+     1>f:\onedrive\documents\2016 ubc\apsc 160\projects\sandbox project\sandbox project\minesweeper.c(140): warning C4098: 'minesweeper' : 'void' function returning a value
+     1>f:\onedrive\documents\2016 ubc\apsc 160\projects\sandbox project\sandbox project\minesweeper.c(145): warning C4244: '=' : conversion from 'time_t' to 'int', possible loss of data
+     1>f:\onedrive\documents\2016 ubc\apsc 160\projects\sandbox project\sandbox project\minesweeper.c(175): warning C4244: '=' : conversion from 'time_t' to 'int', possible loss of data
+     1>f:\onedrive\documents\2016 ubc\apsc 160\projects\sandbox project\sandbox project\minesweeper.c(376): warning C4087: 'drawLine' : declared with 'void' parameter list
+     1>f:\onedrive\documents\2016 ubc\apsc 160\projects\sandbox project\sandbox project\minesweeper.c(379): warning C4087: 'drawLine' : declared with 'void' parameter list
+     1>f:\onedrive\documents\2016 ubc\apsc 160\projects\sandbox project\sandbox project\minesweeper.c(418): warning C4087: 'drawLine' : declared with 'void' parameter list
+     1>f:\onedrive\documents\2016 ubc\apsc 160\projects\sandbox project\sandbox project\minesweeper.c(422): warning C4027: function declared without formal parameter list
+     1>f:\onedrive\documents\2016 ubc\apsc 160\projects\sandbox project\sandbox project\minesweeper.c(265): warning C4716: 'sweepGrid' : must return a value
+     1>f:\onedrive\documents\2016 ubc\apsc 160\projects\sandbox project\sandbox project\minesweeper.c(332): warning C4716: 'checkNum' : must return a value
        Link:
-         D:\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Sandbox Project\Debug\Sandbox Project.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"F:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Sandbox Project\Debug\Sandbox Project.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Sandbox Project\Debug\Sandbox Project.lib" /MACHINE:X86 "Debug\2D Array Experiments.obj"
-         Sandbox Project.vcxproj -> F:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Sandbox Project\Debug\Sandbox Project.exe
-     1>Done Building Project "F:\OneDrive\Documents\UBC 2016\APSC 160\Projects\Sandbox Project\Sandbox Project\Sandbox Project.vcxproj" (Build target(s)).
+         D:\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\OneDrive\Documents\2016 UBC\APSC 160\Projects\Sandbox Project\Debug\Sandbox Project.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"F:\OneDrive\Documents\2016 UBC\APSC 160\Projects\Sandbox Project\Debug\Sandbox Project.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\OneDrive\Documents\2016 UBC\APSC 160\Projects\Sandbox Project\Debug\Sandbox Project.lib" /MACHINE:X86 Debug\Minesweeper.obj
+         Sandbox Project.vcxproj -> F:\OneDrive\Documents\2016 UBC\APSC 160\Projects\Sandbox Project\Debug\Sandbox Project.exe
+     1>Done Building Project "F:\OneDrive\Documents\2016 UBC\APSC 160\Projects\Sandbox Project\Sandbox Project\Sandbox Project.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.61
+Time Elapsed 00:00:00.78
